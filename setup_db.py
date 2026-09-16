@@ -38,6 +38,7 @@ cursor.execute("""
         OrderID INTEGER NOT NULL, 
         ProductID INTEGER NOT NULL,
         Quantity INTEGER NOT NULL CHECK (Quantity > 0),
+        UnitPrice FLOAT NOT NULL CHECK (UnitPrice >= 0),
 
         FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
         FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
@@ -66,8 +67,8 @@ cursor.execute("""
         Customers.Name AS CustomerName,
         Products.Name AS ProductName,
         OrderItems.Quantity,
-        Products.Price,
-        Products.Price * OrderItems.Quantity AS LineTotal,
+        OrderItems.UnitPrice,
+        OrderItems.UnitPrice * OrderItems.Quantity AS LineTotal,
         Orders.OrderDate
     FROM Orders
     INNER JOIN Customers

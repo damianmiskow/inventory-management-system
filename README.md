@@ -22,6 +22,18 @@ A Python and SQLite inventory and order management application. The project demo
 - SQLite
 - SQL
 
+## Architecture
+
+- `main.py` provides the current command-line interface.
+- `services.py` contains validation and business rules.
+- `repositories.py` contains explicit, parameterized SQL queries.
+- `database.py` manages connections, commits, and rollbacks.
+- `setup_db.py` creates a new local database.
+- `migrations/` contains versioned changes for existing databases.
+
+Order items store the price charged at the time of purchase, so historical
+order totals remain accurate when a product's current price changes.
+
 ## Run locally
 
 Create the database:
@@ -38,4 +50,6 @@ python3 main.py
 
 ## Project status
 
-This application is being developed into a full portfolio project. Planned work includes a cleaner backend architecture, automated tests, reporting queries, an API, and a web interface.
+This application is being developed into a full portfolio project. Planned
+work includes automated tests, reporting queries, a FastAPI backend, a React
+and TypeScript interface, PostgreSQL, and AWS deployment.
